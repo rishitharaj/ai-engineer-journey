@@ -1,4 +1,3 @@
-cat > README.md << 'EOF'
 # AI Engineer Journey 🚀
 
 Documenting my hands-on path to becoming a production AI engineer.
