@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from groq import Groq
 from app.models.schemas import ChatRequest, ChatResponse
+from app.config import SYSTEM_PROMPT
 from collections import defaultdict
 from dotenv import load_dotenv
 import os
@@ -16,23 +17,30 @@ async def chat(session_id: str, request: ChatRequest):
     try:
         # Step 1: get existing history for this session
         history = conversation_store[session_id]
-        
-        # Step 2: add the new user message to history
+
+        # Step 2: if new session, inject system prompt first
+        if not history:
+            history.append({
+                "role": "system",
+                "content": SYSTEM_PROMPT
+            })
+
+        # Step 3: add the new user message to history
         for m in request.messages:
             history.append({"role": m.role, "content": m.content})
-        
-        # Step 3: send full history to Groq
+
+        # Step 4: send full history to Groq
         response = client.chat.completions.create(
             model=request.model,
             messages=history
         )
-        
-        # Step 4: get reply
+
+        # Step 5: get reply
         assistant_reply = response.choices[0].message.content
-        
-        # Step 5: save assistant reply to history
+
+        # Step 6: save assistant reply to history
         history.append({"role": "assistant", "content": assistant_reply})
-        
+
         return ChatResponse(
             reply=assistant_reply,
             tokens_used=response.usage.total_tokens
