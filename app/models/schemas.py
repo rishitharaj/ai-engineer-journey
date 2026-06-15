@@ -16,3 +16,12 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     reply: str
     tokens_used: int
+
+class HistoryResponse(BaseModel):
+    session_id: str
+    messages: List[Message]
+    total_messages: int
+
+class ClearResponse(BaseModel):
+    session_id: str
+    status: str
