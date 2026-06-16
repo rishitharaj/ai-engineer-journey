@@ -1,0 +1,24 @@
+Title: Senior ML Engineer at Razorpay
+Location: Bangalore, India
+Experience: 4-7 years
+
+We are looking for a Senior ML Engineer to join our AI team at Razorpay.
+
+Responsibilities:
+- Build and maintain ML pipelines for fraud detection and risk scoring
+- Design and deploy real-time inference systems handling 10M+ transactions daily
+- Work with large-scale structured and unstructured data
+- Collaborate with product and engineering teams
+
+Required Skills:
+- Python, PySpark, SQL
+- Machine Learning, Deep Learning
+- MLflow, Kubeflow for ML pipelines
+- Kafka for real-time data streaming
+- Docker, Kubernetes
+- AWS or GCP
+
+Nice to have:
+- Experience with LLMs and GenAI
+- Knowledge of financial fraud detection
+- FastAPI for model serving

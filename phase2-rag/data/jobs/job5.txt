@@ -1,0 +1,24 @@
+Title: NLP Engineer at Sarvam AI
+Location: Bangalore, India
+Experience: 2-5 years
+
+Sarvam AI is building India's first full-stack AI company. We need NLP Engineers.
+
+Responsibilities:
+- Fine-tune large language models for Indian languages
+- Build data pipelines for multilingual training data
+- Develop evaluation benchmarks for Indic language models
+- Research and implement state-of-the-art NLP techniques
+
+Required Skills:
+- Python, PyTorch
+- Transformers, HuggingFace
+- NLP, Fine-tuning LLMs
+- Distributed training (DeepSpeed, FSDP)
+- CUDA, GPU optimization
+- Data pipeline development
+
+Nice to have:
+- Knowledge of Indic languages
+- Experience with RLHF or DPO
+- Research background in NLP

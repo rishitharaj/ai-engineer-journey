@@ -1,0 +1,24 @@
+Title: AI Engineer at CRED
+Location: Bangalore, India
+Experience: 3-6 years
+
+CRED is hiring an AI Engineer to build next-generation financial intelligence systems.
+
+Responsibilities:
+- Build RAG pipelines for financial document understanding
+- Develop LLM-powered features for credit analysis
+- Design vector search systems over financial data
+- Build evaluation frameworks for LLM outputs
+
+Required Skills:
+- Python, FastAPI
+- LangChain or LlamaIndex
+- Vector databases (Pinecone, ChromaDB, Weaviate)
+- RAG pipeline development
+- OpenAI, Anthropic, or open source LLMs
+- PostgreSQL, Redis
+
+Nice to have:
+- Experience with financial data
+- Knowledge of credit scoring models
+- MLOps experience

@@ -1,0 +1,24 @@
+Title: Data Scientist at Swiggy
+Location: Bangalore, India
+Experience: 2-5 years
+
+Swiggy is looking for a Data Scientist to join our demand forecasting team.
+
+Responsibilities:
+- Build forecasting models for food delivery demand
+- Analyse customer behaviour and retention patterns
+- Design A/B testing frameworks
+- Build dashboards and reports for business stakeholders
+
+Required Skills:
+- Python, R
+- Machine Learning, Statistical Modelling
+- SQL, Spark
+- Tableau or PowerBI
+- Hypothesis Testing, A/B Testing
+- Time Series Forecasting
+
+Nice to have:
+- Experience with recommendation systems
+- Knowledge of supply chain optimization
+- Deep learning experience

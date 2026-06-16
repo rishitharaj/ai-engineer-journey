@@ -1,0 +1,25 @@
+Title: Founding AI Engineer at AI Startup
+Location: Remote, India
+Experience: 3-8 years
+
+We are a funded B2B SaaS startup building AI-powered recruiting tools.
+
+Responsibilities:
+- Build multi-agent systems for automated candidate sourcing and screening
+- Develop RAG pipelines over resumes and job descriptions
+- Build LLM orchestration layers for complex recruiting workflows
+- Design evaluation frameworks for AI system quality
+
+Required Skills:
+- Python, FastAPI
+- RAG architectures, Vector databases
+- LangGraph, CrewAI for multi-agent systems
+- LLMs (GPT, Llama, Mistral)
+- Kafka, Airflow for data pipelines
+- Docker, Kubernetes
+- vLLM for inference optimization
+
+Nice to have:
+- Experience building recruiting or HR tech products
+- Knowledge of embedding models and reranking
+- MLOps and model serving experience
