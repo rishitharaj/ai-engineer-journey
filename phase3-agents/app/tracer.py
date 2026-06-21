@@ -4,8 +4,15 @@ import os
 from datetime import datetime
 from functools import wraps
 from typing import Callable
+from langfuse import get_client
+from dotenv import load_dotenv
+
+load_dotenv()
 
 LOG_FILE = "logs/traces.jsonl"
+
+# v4 SDK: get_client() reads credentials from env vars automatically
+langfuse = get_client()
 
 # Groq pricing (approx, per million tokens) — update if pricing changes
 PRICING = {
@@ -32,7 +39,7 @@ def log_trace(trace: dict):
 
 
 def traced_node(node_name: str):
-    """Decorator that wraps a node function with timing + logging"""
+    """Decorator that wraps a node function with timing + logging + Langfuse tracing"""
     def decorator(func: Callable):
         @wraps(func)
         def wrapper(state, *args, **kwargs):
@@ -41,31 +48,38 @@ def traced_node(node_name: str):
 
             print(f"\n[TRACE] → Entering node: {node_name}")
 
-            result_state = func(state, *args, **kwargs)
+            with langfuse.start_as_current_observation(as_type="span", name=node_name) as span:
+                result_state = func(state, *args, **kwargs)
 
-            latency_ms = round((time.time() - start_time) * 1000, 2)
+                latency_ms = round((time.time() - start_time) * 1000, 2)
+
+                tokens_used = result_state.get("_last_tokens", 0)
+                model = result_state.get("_last_model", "n/a")
+                input_tokens = result_state.get("_last_input_tokens", 0)
+                output_tokens = result_state.get("_last_output_tokens", 0)
+                cost = estimate_cost(model, input_tokens, output_tokens)
+
+                span.update(
+                    output={"tokens_used": tokens_used, "model": model},
+                    metadata={"latency_ms": latency_ms, "cost_usd": cost}
+                )
 
             trace_entry = {
                 "node": node_name,
                 "timestamp": timestamp,
                 "latency_ms": latency_ms,
-                "tokens_used": result_state.get("_last_tokens", 0),
-                "model": result_state.get("_last_model", "n/a"),
-                "cost_usd": estimate_cost(
-                    result_state.get("_last_model", "llama-3.3-70b-versatile"),
-                    result_state.get("_last_input_tokens", 0),
-                    result_state.get("_last_output_tokens", 0)
-                )
+                "tokens_used": tokens_used,
+                "model": model,
+                "cost_usd": cost
             }
 
-            # accumulate trace history inside state
             if "trace_log" not in result_state:
                 result_state["trace_log"] = []
             result_state["trace_log"].append(trace_entry)
 
             print(f"[TRACE] ← Exiting node: {node_name} "
-                  f"| {latency_ms}ms | {trace_entry['tokens_used']} tokens "
-                  f"| ${trace_entry['cost_usd']}")
+                  f"| {latency_ms}ms | {tokens_used} tokens "
+                  f"| ${cost}")
 
             log_trace(trace_entry)
 
