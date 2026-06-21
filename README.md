@@ -59,8 +59,8 @@ Groq LLM (LLaMA 3.3 70B)
 ## Roadmap
 - **Phase 1** — FastAPI + Groq Chatbot ✅
 - **Phase 2** — RAG Pipelines + Vector DBs ✅
-- **Phase 3** — Multi-Agent Systems 🔜
-- **Phase 4** — Production & Infrastructure
+- **Phase 3** — Multi-Agent Systems + Observability ✅
+- **Phase 4** — Production & Infrastructure 🔜
 - **Phase 5** — Evaluation & Feedback Loops
 
 ---
